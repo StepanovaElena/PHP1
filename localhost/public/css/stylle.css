@@ -1,0 +1,155 @@
+@import url(https://fonts.googleapis.com/css?family=Lora);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Lora', serif;
+    background-color: lightgrey;
+}
+
+.main-container {
+    min-height: 100%;
+}
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.main {
+    flex: 1;
+}
+
+.footer {
+    background-color: #ECDAD6;
+    min-height: 50px;
+    font-size: 18px;
+    color: #606060;;
+    text-align: center;
+}
+
+h1 {
+    color: #695753;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 70px;
+}
+
+h2 {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 70px;
+    color: #606060;
+}
+
+.one ul {
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topmenu > li {
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+}
+
+.topmenu > li:last-child {
+    margin-right: 0;
+}
+
+nav a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    outline: none;
+    font-family: 'Lora', serif;
+    transition: .5s linear;
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+.one ul {
+    background: #ECDAD6;
+}
+
+.one ul a {
+    color: #695753;
+}
+
+.one .submenu {
+    display: none;
+    background: #b19891;
+}
+
+.one ul li:hover .submenu {
+    display: block;
+}
+
+.submenu li a {
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    color: white;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 2px solid gray;
+    padding-bottom: 20px;
+    padding-top: 70px;
+}
+
+.gallery > a {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.upload_form_error {
+    color: red;
+    font-size: 12px;
+}
+
+.upload-form p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#submit {
+    background-color: #b19891;
+    border-radius: 15px;
+    width: 100px;
+    height: 30px;
+    font-family: 'Lora', serif;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    transition: background-color 1s;
+}
+
