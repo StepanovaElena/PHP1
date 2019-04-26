@@ -1,0 +1,123 @@
+<?php
+/*
+function updateFeedback()
+{
+    $db = getDb();
+    $id = (int)$_POST["id"];
+    $name = mysqli_real_escape_string($db, strip_tags(htmlspecialchars($_POST['name'])));
+    $message = mysqli_real_escape_string($db, strip_tags(htmlspecialchars($_POST['message'])));
+    $sql = "UPDATE `feedback` SET `name` = '{$name}', `feedback` = '{$message}' WHERE `feedback`.`id` = {$id};";
+
+    return executeQuery($sql);
+
+}
+
+function addFeedBack()
+{
+    $db = getDb();
+    $name = mysqli_real_escape_string($db, strip_tags(htmlspecialchars($_POST['name'])));
+    $message = mysqli_real_escape_string($db, strip_tags(htmlspecialchars($_POST['message'])));
+    $sql = "INSERT INTO `feedback` (`name`, `feedback`) VALUES ('{$name}', '{$message}');";
+    return executeQuery($sql);
+
+}
+
+function getOneFeedBack($id)
+{
+    $id = (int)$id;
+
+    $sql = "SELECT * FROM feedback WHERE id = {$id}";
+    $news = getAssocResult($sql);
+
+    //В случае если новости нет, вернем пустое значение
+    $result = [];
+    if (isset($news[0]))
+        $result = $news[0];
+
+    return $result;
+}
+
+function delFeedBack($id)
+{
+    $id = (int)$id;
+    $sql = "DELETE FROM feedback WHERE id = {$id}";
+    return executeQuery($sql);
+}
+
+function getAllFeedback()
+{
+    $sql = "SELECT * FROM feedback ORDER BY id DESC ";
+    return getAssocResult($sql);
+}
+
+function doFeedbackAction($action, $id) {
+    $params['textAction'] = "Добавить";
+    $params['formAction'] = "add";
+
+    switch ($_GET['status']) {
+        case 'ok':
+            $params['status'] = "Сообщение добавлено";
+            break;
+        case 'deleted':
+            $params['status'] = "Сообщение удалено";
+            break;
+        case 'edited':
+            $params['status'] = "Сообщение изменено";
+            break;
+        default:
+            $params['status'] = "Оставьте отзыв";
+    }
+
+    if ($action == "add" && isset($_POST['send'])) {
+        addFeedBack();
+
+        header("Location: /feedback/?status=ok");
+    }
+
+    if ($action == "delete") {
+        delFeedBack($id);
+        header("Location: /feedback/?status=deleted");
+    }
+
+    if ($action == "edit") {
+        if (isset($_POST['send'])) {
+            updateFeedback();
+            header("Location: /feedback/?status=edited");
+        } else {
+            $params['textAction'] = "Править";
+            $params['formAction'] = "edit";
+            $message = getOneFeedBack($id);
+            $params['name'] = $message['name'];
+            $params['message'] = $message['feedback'];
+            $params['id'] = $message['id'];
+        }
+
+    }
+
+    $params['feedback'] = getAllFeedback();
+
+    return $params;
+}
+*/
+/*Вывод комментариев*/
+function displayComments($id) {
+    $sql = "SELECT * FROM feedback WHERE product_id = {$id}";
+    $fb = getAssocResult($sql);
+
+    if(!empty($fb)) {
+        return $fb;
+    }else{
+        return $fb = 'There are no feedbacks for this product yet.';
+    }
+}
+
+/*Добавление отзыва в БД*/
+function addComments($id) {
+    if (empty($_POST['name']) || empty($_POST['text'])) {
+        return $error = 11;
+    }
+    $name = $_POST['name'];
+    $text = $_POST['text'];
+    executeQuery("INSERT INTO feedback (name, feedback, product_id) VALUES('{$name}','{$text}', '{$id}')");
+    return $error = 12;
+}
